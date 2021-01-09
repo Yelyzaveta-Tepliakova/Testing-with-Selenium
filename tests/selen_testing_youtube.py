@@ -17,16 +17,22 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
-if os.path.isfile("test_YouTube.txt") == True:  # creates file for results of test_YouTube
-    os.remove("test_YouTube.txt")
-with open("test_YouTube.txt", 'w') as doc:
+if os.path.isfile("YouTube_testing_results.txt") is True:  # creates file for results of YouTube_test
+    os.remove("YouTube_testing_results.txt")
+with open("YouTube_testing_results.txt", 'w') as doc:
     doc.write("\n\n\nTest suite \"testing YouTube\":\n")
 
 
-class tests_for_YouTube(unittest.TestCase):  # unittests for some abilities of YouTube
-
+class YouTubeTesting(unittest.TestCase):
+    """
+    Tests for some abilities in YouTube
+    """
 
     def setUp(self):
+        """
+
+        :return: None
+        """
         options = Options()
         options.headless = True
         self.driver = webdriver.Chrome(options=options)
@@ -34,8 +40,12 @@ class tests_for_YouTube(unittest.TestCase):  # unittests for some abilities of Y
         self.driver.set_window_size(1200, 600)
 
 
-    def test1_inability_to_like_video_if_not_signed_in(self):  # checks inability to like video if user is not
-                                                               # signed in and writing result into file
+    def test1_inability_to_like_video(self):
+        """
+        The test case is intended for checking of inability
+        to like video if user is not signed in
+        :return: None
+        """
         name = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/'
                                                   'div[1]/div/div[5]/div[2]/ytd-video-primary-info-renderer/div/div/'
@@ -58,7 +68,11 @@ class tests_for_YouTube(unittest.TestCase):  # unittests for some abilities of Y
                 doc.write("\nTest case \"test1_inability_to_like_video_if_not_signed_in\" failed")
 
 
-    def test2_pressing_button_to_sign_in(self): # checks button to sign in and writing result into file
+    def test2_press_sign_in_button(self):
+        """
+        The test case is intended for checking of press the button to sign in
+        :return: None
+        """
         name = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/'
                                                   'div[1]/div/div[5]/div[2]/ytd-video-primary-info-renderer/div/div/'
@@ -84,7 +98,11 @@ class tests_for_YouTube(unittest.TestCase):  # unittests for some abilities of Y
                 doc.write("\nTest case \"test2_pressing_button_to_sign_in\" failed")
 
 
-    def test3_going_to_the_channel(self):   # checks button going to channel and writing result into file
+    def test3_going_to_the_channel(self):
+        """
+        The test case is intended for checking of the button to go to channel
+        :return: None
+        """
         name = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/'
                                                   'div[1]/div/div[6]/div[3]/ytd-video-secondary-info-renderer/div/'
@@ -101,8 +119,14 @@ class tests_for_YouTube(unittest.TestCase):  # unittests for some abilities of Y
                 doc.write("\nTest case \"test3_going_to_the_channel\" failed")
 
 
-    def test4_going_to_the_channel_and_opening_instagram(self): # checks button going to channel and opening instagram
-                                                                # of this channel and writing result into file
+    def test4_open_instagram(self):
+        """
+        The test case is intended for checking of button pressing
+        of going to channel and opening instagram
+        :return: None
+        """
+
+        # checks button going to channel and opening instagram
         name = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/'
                                                   'div[1]/div/div[6]/div[3]/ytd-video-secondary-info-renderer/div/'
